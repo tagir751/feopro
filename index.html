@@ -512,19 +512,14 @@
             }
         }
 
-        .author-photo {
-            width: 280px;
-            height: 280px;
-            min-width: 280px;
-            border-radius: 20px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--turquoise));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 6rem;
-            color: white;
-            box-shadow: 0 20px 50px rgba(0, 119, 190, 0.2);
-        }
+ .author-photo {
+    width: 280px;
+    height: 280px;
+    min-width: 280px;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 20px 50px rgba(0, 119, 190, 0.2);
+}
 
         .author-text {
             flex: 1;
@@ -1121,11 +1116,12 @@
     </section>
 
     <!-- Author Section -->
+   <!-- Author Section -->
     <section class="author-section">
         <div class="section-container">
             <h2 class="section-title" data-aos="fade-up">Привет, я Тагир</h2>
             <div class="author-content">
-                <div class="author-photo" data-aos="fade-right">👨‍🏫</div>
+                <img src="tagir.png" alt="Тагир — фасилитатор мастерской ИИ" class="author-photo" data-aos="fade-right">
                 <div class="author-text" data-aos="fade-left">
                     <p>Я — фасилитатор с многолетним опытом работы с детьми и подростками. Моя задача — не давать готовые ответы, а создавать ситуации, в которых ребята сами учатся думать, сомневаться, искать и находить.</p>
                     <p>Я прошёл путь от классического образования к проектной методике и убедился: подростки расцветают, когда видят смысл в том, что делают. А искусственный интеллект — это инструмент, который усиливает их возможности.</p>
