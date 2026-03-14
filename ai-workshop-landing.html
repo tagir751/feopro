@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мастерская искусственного интеллекта | Феодосия</title>
+    <meta name="description" content="Научим подростков 14-20 лет создавать свои проекты с помощью ИИ. Очные занятия в Феодосии.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #0077be;
+            --primary-blue-dark: #005a8c;
+            --turquoise: #1ABC9C;
+            --turquoise-light: #40E0D0;
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--white);
+            color: var(--gray-700);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 20px rgba(0, 119, 190, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--turquoise));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .header-btn {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .header-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 119, 190, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 2rem 80px;
+            background: linear-gradient(180deg, 
+                rgba(0, 119, 190, 0.03) 0%, 
+                rgba(26, 188, 156, 0.05) 50%,
+                rgba(255, 255, 255, 1) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 60%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(26, 188, 156, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary-blue), var(--turquoise));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: var(--gray-600);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-tags {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-tag {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-weight: 500;
+            color: var(--gray-700);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+
+        .hero-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 119, 190, 0.1);
+            border-color: var(--turquoise-light);
+        }
+
+        .hero-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            color: white;
+            padding: 1.25rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(0, 119, 190, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 10px 40px rgba(0, 119, 190, 0.3); }
+            50% { box-shadow: 0 10px 50px rgba(0, 119, 190, 0.5); }
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            animation: none;
+            box-shadow: 0 15px 50px rgba(0, 119, 190, 0.4);
+        }
+
+        .hero-note {
+            margin-top: 1.25rem;
+            font-size: 0.95rem;
+            color: var(--gray-600);
+        }
+
+        /* Sections Common */
+        section {
+            padding: 100px 2rem;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--gray-900);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        /* Video Section */
+        .video-section {
+            background: var(--gray-50);
+        }
+
+        .video-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-text {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Cards Section */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 119, 190, 0.12);
+            border-color: var(--turquoise-light);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 0.75rem;
+        }
+
+        .card-text {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+        }
+
+        .cards-note {
+            text-align: center;
+            margin-top: 2.5rem;
+            font-size: 1.1rem;
+            color: var(--gray-700);
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            background: linear-gradient(180deg, var(--white) 0%, var(--gray-50) 100%);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 1.25rem;
+        }
+
+        @media (max-width: 600px) {
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1.25rem;
+            background: white;
+            border-radius: 15px;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            border-color: var(--turquoise-light);
+            box-shadow: 0 8px 25px rgba(0, 119, 190, 0.08);
+        }
+
+        .benefit-number {
+            width: 45px;
+            height: 45px;
+            min-width: 45px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--turquoise));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .benefit-content h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 0.35rem;
+        }
+
+        .benefit-content p {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Process Section */
+        .process-section {
+            background: var(--white);
+        }
+
+        .process-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .process-text {
+            font-size: 1.1rem;
+            color: var(--gray-700);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .process-text strong {
+            color: var(--gray-900);
+        }
+
+        .project-types {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-type {
+            background: linear-gradient(135deg, rgba(0, 119, 190, 0.1), rgba(26, 188, 156, 0.1));
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            color: var(--gray-700);
+        }
+
+        .process-info {
+            background: var(--gray-50);
+            border-radius: 20px;
+            padding: 2rem;
+            border-left: 4px solid var(--turquoise);
+        }
+
+        .process-info p {
+            margin-bottom: 0.75rem;
+            font-size: 1.05rem;
+        }
+
+        .process-info p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Features Section */
+        .features-section {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #00a8cc 100%);
+            color: white;
+        }
+
+        .features-section .section-title {
+            color: white;
+        }
+
+        .features-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(10px);
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+        }
+
+        .feature-content h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.35rem;
+        }
+
+        .feature-content p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* Author Section */
+        .author-section {
+            background: var(--gray-50);
+        }
+
+        .author-content {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .author-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        .author-photo {
+            width: 280px;
+            height: 280px;
+            min-width: 280px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--turquoise));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            color: white;
+            box-shadow: 0 20px 50px rgba(0, 119, 190, 0.2);
+        }
+
+        .author-text {
+            flex: 1;
+        }
+
+        .author-text p {
+            font-size: 1.05rem;
+            color: var(--gray-700);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .author-channel {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--turquoise));
+            color: white;
+            padding: 0.875rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .author-channel:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 119, 190, 0.3);
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            background: var(--white);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .review-card {
+            background: var(--gray-50);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+
+        .review-card:hover {
+            border-color: var(--turquoise-light);
+            box-shadow: 0 15px 40px rgba(0, 119, 190, 0.08);
+        }
+
+        .review-author {
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .review-text {
+            color: var(--gray-700);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(180deg, var(--gray-50) 0%, var(--white) 100%);
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-address {
+            font-size: 1.2rem;
+            color: var(--gray-700);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-phone {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 2rem;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-btn-primary {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 119, 190, 0.3);
+        }
+
+        .contact-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 119, 190, 0.4);
+        }
+
+        .contact-btn-secondary {
+            background: white;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+
+        .contact-btn-secondary:hover {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .map-container {
+            margin-top: 3rem;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: var(--white);
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border: 1px solid var(--gray-200);
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--turquoise-light);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.25rem 1.5rem;
+            background: var(--gray-50);
+            border: none;
+            text-align: left;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .faq-question:hover {
+            background: var(--gray-100);
+        }
+
+        .faq-icon {
+            font-size: 1.25rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding: 1.25rem 1.5rem;
+            color: var(--gray-700);
+            line-height: 1.7;
+            background: white;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gray-900);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--turquoise-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-copy {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--turquoise));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 5px 20px rgba(0, 119, 190, 0.3);
+            z-index: 999;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 119, 190, 0.4);
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .header {
+                padding: 0.75rem 1rem;
+            }
+
+            .logo {
+                font-size: 0.85rem;
+            }
+
+            .logo-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 1rem;
+            }
+
+            .header-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .header-btn span {
+                display: none;
+            }
+
+            section {
+                padding: 60px 1rem;
+            }
+
+            .hero {
+                padding: 100px 1rem 60px;
+            }
+
+            .hero-tags {
+                gap: 0.75rem;
+            }
+
+            .hero-tag {
+                padding: 0.6rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            .hero-btn {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+            }
+
+            .contact-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="#" class="logo">
+                <div class="logo-icon">🤖</div>
+                <span>МАСТЕРСКАЯ ИИ</span>
+            </a>
+            <a href="https://t.me/TagirFeo?text=Хочу%20узнать%20про%20курс" target="_blank" class="header-btn">
+                📱 <span>Записаться на пробное</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 data-aos="fade-up">Научись создавать свои <span>проекты с помощью ИИ</span></h1>
+            <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">
+                Для подростков 14–20 лет. Очные встречи в Феодосии + онлайн‑поддержка.
+            </p>
+            <div class="hero-tags" data-aos="fade-up" data-aos-delay="200">
+                <div class="hero-tag">🧠 Мышление</div>
+                <div class="hero-tag">🔗 Логика</div>
+                <div class="hero-tag">🗣️ Живое общение</div>
+            </div>
+            <a href="https://t.me/TagirFeo?text=Хочу%20узнать%20про%20курс" target="_blank" class="hero-btn" data-aos="fade-up" data-aos-delay="300">
+                🚀 Записаться на бесплатное вводное занятие
+            </a>
+            <p class="hero-note" data-aos="fade-up" data-aos-delay="400">Первое занятие — знакомство с наставником и первая идея.</p>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="section-container">
+            <h2 class="section-title" data-aos="fade-up">Посмотрите, кто будет вести мастерскую</h2>
+            <div class="video-wrapper" data-aos="fade-up" data-aos-delay="100">
+                <div class="video-container">
+                    <iframe src="https://vk.com/video_ext.php?oid=372915994&id=456239140" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <p class="video-text">
+                    Меня зовут Тагир. Я помогаю подросткам перестать бояться сложных задач и начать создавать свои проекты. В этом видео я рассказываю, как устроена мастерская и почему ИИ — не враг, а помощник.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cards Section -->
+    <section class="cards-section">
+        <div class="section-container">
+            <h2 class="section-title" data-aos="fade-up">Чему научится ваш подросток</h2>
+            <div class="cards-grid">
+                <div class="card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-icon">🤖</div>
+                    <h3 class="card-title">Как устроен ИИ</h3>
+                    <p class="card-text">Без сложных формул, на пальцах</p>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="150">
+                    <div class="card-icon">✍️</div>
+                    <h3 class="card-title">Промпты</h3>
+                    <p class="card-text">Разговаривать с нейросетями</p>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-icon">🧠</div>
+                    <h3 class="card-title">Логика</h3>
+                    <p class="card-text">Работа с разными нейросетями (ChatGPT, Midjourney и др.)</p>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="250">
+                    <div class="card-icon">⚙️</div>
+                    <h3 class="card-title">Агенты ИИ</h3>
+                    <p class="card-text">Автоматизация цепочек действий</p>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-icon">💡</div>
+                    <h3 class="card-title">Идея → Проект</h3>
+                    <p class="card-text">От замысла до воплощения</p>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="350">
+                    <div class="card-icon">🔧</div>
+                    <h3 class="card-title">Инструменты</h3>
+                    <p class="card-text">Создание игр, приложений, сайтов, музыки, ботов</p>
+                </div>
+            </div>
+            <p class="cards-note" data-aos="fade-up">И всё это — через собственный проект, а не абстрактные упражнения.</p>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="section-container">
+            <h2 class="section-title" data-aos="fade-up">10 перемен, которые вы заметите</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="benefit-number">1</div>
+                    <div class="benefit-content">
+                        <h4>Научится принимать решения</h4>
+                        <p>Перестанет ждать готовых ответов, начнёт искать свои.</p>
+                    </div>
+                </div>
+                <div class="benefit-item" data-aos="fade-up" data-aos-delay="150">
+                    <div class="benefit-number">2</div>
+                    <div class="benefit-content">
+                        <h4>Станет увереннее в себе</h4>
+                        <p>Результат своей работы — приложение, сайт, игра — даёт настоящую гордость.</p>
+                    </div>
+                </div>
+                <div class="benefit-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="benefit-number">3</div>
+                    <div class="benefit-content">
+                        <h4>Чётко формулировать мысли</h4>
+                        <p>Донесёт идею так, что его услышат.</p>
+                    </div>
+                </div>
+                <div class="benefit-item" data-aos="fade-up" data-aos-delay="250">
+                    <div class="benefit-number">4</div>
+                    <div class="benefit-content">
+                        <h4>Работать в команде</h4>
+                        <p>Умение договариваться — половина успеха в жизни.</p>
+                    </div>
+                </div>
+                <div class="benefit-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="benefit-number">5</div>
+                    <div class="benefit-content">
+                        <h4>Фокусироваться на задаче</h4>
+                        <p>Тренировка внимания через реальные проекты.</p>
+                    </div>
+                </div>
+                <div class="benefit-item" data-aos="fade-up" data-aos-delay="350">
+                    <div class="benefit-number">6</div>
+                    <div class="benefit-content">
+                        <h4>Мыслить шире</h4>
+                        <p>Видеть нестандартные решения и не бояться сложного.</p>
+                    </div>
+                </div>
+                <div class="benefit-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="benefit-number">7</div>
+                    <div class="benefit-content">
+                        <h4>Сменить круг общения</h4>
+                        <p>Вокруг будут такие же увлечённые, думающие ребята.</p>
+                    </div>
+                </div>
+                <div class="benefit-item" data-aos="fade-up" data-aos-delay="450">
+                    <div class="benefit-number">8</div>
+                    <div class="benefit-content">
+                        <h4>Перестать быть потребителем</h4>
+                        <p>Вместо скроллинга — создание своего.</p>
+                    </div>
+                </div>
+                <div class="benefit-item" data-aos="fade-up" data-aos-delay="500">
+                    <div class="benefit-number">9</div>
+                    <div class="benefit-content">
+                        <h4>Смотреть в будущее с интересом</h4>
+                        <p>Понимание технологий даёт опору и направление.</p>
+                    </div>
+                </div>
+                <div class="benefit-item" data-aos="fade-up" data-aos-delay="550">
+                    <div class="benefit-number">10</div>
+                    <div class="benefit-content">
+                        <h4>Глаза будут гореть</h4>
+                        <p>А это, согласитесь, главное.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="section-container">
+            <h2 class="section-title" data-aos="fade-up">Мини‑группы, реальные проекты, живое общение</h2>
+            <div class="process-content">
+                <p class="process-text" data-aos="fade-up" data-aos-delay="100">
+                    Мы собираемся в уютном пространстве в центре Феодосии (ул. Русская, 13). Группа — <strong>до 12 человек</strong>, чтобы каждому хватило внимания.
+                </p>
+                <p class="process-text" data-aos="fade-up" data-aos-delay="150">
+                    Каждый подросток работает над <strong>собственным проектом</strong> — тем, что ему действительно интересно:
+                </p>
+                <div class="project-types" data-aos="fade-up" data-aos-delay="200">
+                    <span class="project-type">🎮 игры</span>
+                    <span class="project-type">📱 приложения</span>
+                    <span class="project-type">🌐 сайты</span>
+                    <span class="project-type">🎵 музыка</span>
+                    <span class="project-type">🤖 Telegram‑боты</span>
+                </div>
+                <p class="process-text" data-aos="fade-up" data-aos-delay="250">
+                    Мы используем <strong>методику PBL (проектное обучение)</strong> — единственные в городе, кто применяет её активно. Это значит: никакой скучной теории, сразу практика.
+                </p>
+                <div class="process-info" data-aos="fade-up" data-aos-delay="300">
+                    <p>🗓️ <strong>Формат:</strong> Очные встречи раз в неделю + онлайн‑поддержка в течение курса.</p>
+                    <p>⏳ <strong>Длительность курса:</strong> 3 месяца (помесячная оплата).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="section-container">
+            <h2 class="section-title" data-aos="fade-up">Почему родители нам доверяют</h2>
+            <div class="features-list">
+                <div class="feature-item" data-aos="fade-right" data-aos-delay="100">
+                    <div class="feature-icon">✔️</div>
+                    <div class="feature-content">
+                        <h4>Первая мастерская ИИ в Феодосии</h4>
+                        <p>Мы открываем двери в мир технологий прямо в вашем городе.</p>
+                    </div>
+                </div>
+                <div class="feature-item" data-aos="fade-right" data-aos-delay="150">
+                    <div class="feature-icon">✔️</div>
+                    <div class="feature-content">
+                        <h4>Живой наставник, а не запись</h4>
+                        <p>Тагир лично работает с каждым подростком.</p>
+                    </div>
+                </div>
+                <div class="feature-item" data-aos="fade-right" data-aos-delay="200">
+                    <div class="feature-icon">✔️</div>
+                    <div class="feature-content">
+                        <h4>Индивидуальный подход</h4>
+                        <p>Каждый занимается своим проектом, а не «все вместе одно и то же».</p>
+                    </div>
+                </div>
+                <div class="feature-item" data-aos="fade-right" data-aos-delay="250">
+                    <div class="feature-icon">✔️</div>
+                    <div class="feature-content">
+                        <h4>Развитие мышления, а не просто кодинг</h4>
+                        <p>Учим ставить цели, анализировать, принимать решения.</p>
+                    </div>
+                </div>
+                <div class="feature-item" data-aos="fade-right" data-aos-delay="300">
+                    <div class="feature-icon">✔️</div>
+                    <div class="feature-content">
+                        <h4>Мини‑группа 12 человек</h4>
+                        <p>Камерно, тепло, эффективно.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Author Section -->
+    <section class="author-section">
+        <div class="section-container">
+            <h2 class="section-title" data-aos="fade-up">Привет, я Тагир</h2>
+            <div class="author-content">
+                <div class="author-photo" data-aos="fade-right">👨‍🏫</div>
+                <div class="author-text" data-aos="fade-left">
+                    <p>Я — фасилитатор с многолетним опытом работы с детьми и подростками. Моя задача — не давать готовые ответы, а создавать ситуации, в которых ребята сами учатся думать, сомневаться, искать и находить.</p>
+                    <p>Я прошёл путь от классического образования к проектной методике и убедился: подростки расцветают, когда видят смысл в том, что делают. А искусственный интеллект — это инструмент, который усиливает их возможности.</p>
+                    <p>Хотите познакомиться ближе? Подписывайтесь на мой канал, там я пишу о мышлении, образовании и проектах:</p>
+                    <a href="https://t.me/feopro2024" target="_blank" class="author-channel">
+                        📲 Мой Telegram-канал @feopro2024
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews-section">
+        <div class="section-container">
+            <h2 class="section-title" data-aos="fade-up">Родители уже замечают изменения</h2>
+            <div class="reviews-grid">
+                <div class="review-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="review-author">Анна</div>
+                    <p class="review-text">«Моя дочь посещает занятия Тагира по применению искусственного интеллекта. Занимается всего около двух недель, но уже заметны результаты. Тагир объясняет и показывает на практике, как применять ИИ для достижения своих целей, как грамотно формулировать вопросы, как анализировать и проверять информацию. Такие навыки нужны в любой профессии. Занятия способствуют интеллектуальному развитию подростка. Дочь ходит с удовольствием!»</p>
+                </div>
+                <div class="review-card" data-aos="fade-up" data-aos-delay="150">
+                    <div class="review-author">Ирина Ковалева</div>
+                    <p class="review-text">«Пришли с ребенком на один день, а остался на все каникулы! Ему очень интересно что‑то делать своими руками, общаться с другими ребятами. Очень комфортная обстановка, каждому уделяют внимание, всё объясняют. Придём обязательно ещё.»</p>
+                </div>
+                <div class="review-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="review-author">Екатерина</div>
+                    <p class="review-text">«Классное место, чтобы научить ребёнка мыслить и принимать собственные решения. Это куда лучше, чем современное образование, которое обучает сидеть за партой и поднимать руку.»</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="section-container">
+            <h2 class="section-title" data-aos="fade-up">Приходите знакомиться лично</h2>
+            <div class="contact-content">
+                <p class="contact-address" data-aos="fade-up" data-aos-delay="100">
+                    📍 <strong>Где:</strong> Феодосия, ул. Русская, 13 (в центре, удобно добираться)
+                </p>
+                <p class="contact-phone" data-aos="fade-up" data-aos-delay="150">
+                    📞 +7 (978) 650-86-26
+                </p>
+                <div class="contact-buttons" data-aos="fade-up" data-aos-delay="200">
+                    <a href="https://t.me/TagirFeo?text=Хочу%20узнать%20про%20курс" target="_blank" class="contact-btn contact-btn-primary">
+                        📲 Записаться на пробное (@TagirFeo)
+                    </a>
+                    <a href="https://t.me/feopro2024" target="_blank" class="contact-btn contact-btn-secondary">
+                        📢 Читать канал автора (@feopro2024)
+                    </a>
+                </div>
+                <div class="map-container" data-aos="fade-up" data-aos-delay="250">
+                    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A0&amp;source=constructor&amp;ll=35.381185%2C45.031562&amp;z=16&amp;pt=35.381185,45.031562,pm2rdm" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="section-container">
+            <h2 class="section-title" data-aos="fade-up">Ответы на важные вопросы</h2>
+            <div class="faq-list">
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                    <button class="faq-question">
+                        Что, если ребёнок совсем не разбирается в технологиях?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Это не проблема. Мы начинаем с самых основ и постепенно погружаемся. Главное — желание и интерес. Остальному научим.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="150">
+                    <button class="faq-question">
+                        А если ему больше нравится рисовать или придумывать истории, а не программировать?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Отлично! В мастерской можно создавать игры, сайты, музыку, анимацию — ИИ поможет воплотить любые творческие идеи. Программирование станет инструментом, а не самоцелью.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                    <button class="faq-question">
+                        Сколько детей в группе?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Не больше 12 человек. Так мы можем уделить внимание каждому, помочь с проектом и ответить на вопросы.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="250">
+                    <button class="faq-question">
+                        Родители могут присутствовать на занятии?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            На первом бесплатном занятии — да, можно прийти вместе, посмотреть, как всё устроено. На постоянных встречах ребята занимаются самостоятельно — так они быстрее учатся самостоятельности.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                    <button class="faq-question">
+                        Какой результат будет через 3 месяца?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            У каждого подростка будет готовый работающий проект: приложение, сайт, игра или Telegram‑бот. А главное — появится уверенность в своих силах и понимание, как ставить цели и достигать их.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="350">
+                    <button class="faq-question">
+                        Есть ли онлайн‑формат?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Основные встречи — очные в Феодосии (мы верим в живое общение). Но между занятиями мы поддерживаем связь онлайн: отвечаем на вопросы, помогаем с кодом, обсуждаем идеи.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
+                    <button class="faq-question">
+                        Сколько стоит курс?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Стоимость узнавайте на бесплатном занятии — она зависит от формата и длительности. Оплата помесячная, чтобы было удобно.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="450">
+                    <button class="faq-question">
+                        Вы даёте сертификат?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Мы не гонимся за бумажками. Главный результат — проект, который ребёнок создаст сам. Его можно положить в портфолио, показать друзьям и использовать при поступлении.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">МАСТЕРСКАЯ ИСКУССТВЕННОГО ИНТЕЛЛЕКТА © 2026</div>
+            <div class="footer-links">
+                <a href="https://t.me/TagirFeo" target="_blank">@TagirFeo</a>
+                <a href="https://t.me/feopro2024" target="_blank">Канал автора</a>
+                <span>+7 (978) 650-86-26</span>
+            </div>
+            <p class="footer-copy">Феодосия</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to top button -->
+    <button class="scroll-top" id="scrollTop">↑</button>
+
+    <!-- AOS Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out',
+            once: true,
+            offset: 100
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 500) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
